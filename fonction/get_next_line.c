@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 18:06:55 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/07 20:37:48 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/09 20:42:04 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ char	*read_and_store(char *buffer, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffers[1024] = {NULL};
+	static char	*buffers[MAX_FD] = {NULL};
 	char		*line;
 
-	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!buffers[fd])
 	{

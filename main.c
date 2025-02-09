@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:16 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/07 23:05:55 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/10 00:35:42 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ int	main(int argc, char **argv)
 		return (0);
 	is_this_map(argv[1]);
 	scan_map(argv[1]);
+	//get_map_size(argv[1], map_size);
 }

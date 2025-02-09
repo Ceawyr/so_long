@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:53 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/08 00:55:14 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/10 00:30:24 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4
 # endif
+
+# ifndef MAX_FD
+#  define MAX_FD 1024
+# endif
+
+# define ERROR_PLAYER_NUMBER "Error\nOnly one play is acceptable.\n"
+# define ERROR_EXIT "Error\nOnly one exit for map.\n"
 
 typedef struct	s_list
 {
@@ -31,6 +38,7 @@ int		ft_strrstr(char *str);
 void	ft_putstr_fd(char *str, int fd);
 void	ft_putstr_fd(char *str, int fd);
 void	ft_exit(int code_error);
+void	get_map_size(char *argv);
 void	scan_map(char *argv);
 
 char	*ft_strchr(const char *s, int c);

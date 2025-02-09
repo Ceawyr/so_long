@@ -6,15 +6,15 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:32:29 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/08 00:54:31 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/09 20:07:55 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s && s[i])
