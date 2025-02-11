@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrstr.c                                       :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cnamoune <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 00:21:29 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/10 22:14:42 by cnamoune         ###   ########.fr       */
+/*   Created: 2025/02/10 19:20:01 by cnamoune          #+#    #+#             */
+/*   Updated: 2025/02/10 19:20:25 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
-int	ft_strrstr(char *str)
+void	free_tab(char **argv)
 {
-	int	len;
+	int	i;
 
-	len = ft_strlen(str);
-	if (len < 4)
-		return (0);
-	return (str[len - 4] == '.' && str[len - 3] == 'b' &&
-		str[len - 2] == 'e' && str[len - 1] == 'r');
+	i = 0;
+	if (!argv)
+		return ;
+	while (argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
 }

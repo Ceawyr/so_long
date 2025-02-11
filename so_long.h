@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:53 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/10 00:30:24 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/11 01:18:10 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,22 @@
 
 typedef struct	s_list
 {
-	int	x_len;
-	int	y_len;
+	char	**map;
+	int		x;
+	int		y;
+	int		fd;
 }				t_map_dimension;
 
 int		ft_strlen(const char *s);
 int		ft_strrstr(char *str);
 
+void	free_tab(char **argv);
 void	ft_putstr_fd(char *str, int fd);
 void	ft_putstr_fd(char *str, int fd);
 void	ft_exit(int code_error);
-void	get_map_size(char *argv);
 void	scan_map(char *argv);
+
+t_map_dimension	get_map_size(char *argv);
 
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
@@ -49,3 +53,6 @@ char	*extract_line(char *buffer);
 char	*update_buffer(char *buffer);
 char	*read_and_store(char *buffer, int fd);
 char	*get_next_line(int fd);
+char	**ft_split(char const *s, char c);
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
