@@ -30,5 +30,5 @@ int	main(int argc, char **argv)
 		return (0);
 	is_this_map(argv[1]);
 	map = get_map_size(argv[1]);
-	is_map_valid(map, argv[1]);
+	is_map_valid(&map, argv[1]);
 }

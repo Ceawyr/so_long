@@ -12,6 +12,15 @@
 
 #include "so_long.h"
 
+void	free_gnl(int fd, char *line)
+{
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+}
+
 void	free_tab(char **argv)
 {
 	int	i;

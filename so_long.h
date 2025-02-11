@@ -32,6 +32,9 @@ typedef struct	s_list
 	int		x;
 	int		y;
 	int		fd;
+	int		player;
+	int		colectible;
+	int		exit;
 }				t_map_dimension;
 
 int		ft_strlen(const char *s);
@@ -42,6 +45,8 @@ void	ft_putstr_fd(char *str, int fd);
 void	ft_putstr_fd(char *str, int fd);
 void	ft_exit(int code_error);
 void	scan_map(char *argv);
+void	free_gnl(int fd, char *line);
+void	is_map_valid(t_map_dimension *map, char *argv);
 
 t_map_dimension	get_map_size(char *argv);
 

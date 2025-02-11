@@ -91,7 +91,7 @@ int	is_map_closed(char **map)
 	return (1);
 }
 
-void	get_map_dimention(char *argv, int *y, int *x)
+void	get_map_dimention(char *argv, int *y)
 {
 	char	*line;
 	int		fd;
@@ -118,7 +118,7 @@ t_map_dimension	get_map_size(char *argv)
 	i = 0;
 	scan_map(argv);
 	map = (t_map_dimension){NULL, 0, 0, 0};
-	get_map_dimention(argv, &map.y, &map.x);
+	get_map_dimention(argv, &map.y);
 	map.map = malloc(sizeof(char *) * (map.y + 1));
 	if (!map.map)
 		ft_exit(0);
