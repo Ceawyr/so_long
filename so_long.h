@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:53 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/11 01:18:10 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:09:19 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@
 #  define MAX_FD 1024
 # endif
 
-# define ERROR_PLAYER_NUMBER "Error\nOnly one play is acceptable.\n"
-# define ERROR_EXIT "Error\nOnly one exit for map.\n"
+# define ERROR_MAP "Map as to be rectangle and 5x3 minimum\n"
+# define ERROR_MEMORY "Memory allocation failed.\n"
+# define ERROR_PEC "One player, One exit and at least one collectible\n"
 
 typedef struct	s_list
 {
 	char	**map;
 	int		x;
 	int		y;
+	int		z;
 	int		fd;
 	int		player;
 	int		colectible;
@@ -46,7 +48,8 @@ void	ft_putstr_fd(char *str, int fd);
 void	ft_exit(int code_error);
 void	scan_map(char *argv);
 void	free_gnl(int fd, char *line);
-void	is_map_valid(t_map_dimension *map, char *argv);
+void	is_map_valid(t_map_dimension *map);
+void	is_it_praticable(t_map_dimension *map);
 
 t_map_dimension	get_map_size(char *argv);
 

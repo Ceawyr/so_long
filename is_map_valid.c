@@ -6,42 +6,36 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 00:57:58 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/11 01:51:45 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/12 23:42:46 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_pec(t_map_dimension *map)
+static int	check_pec(t_map_dimension *map)
 {
-	int		i;
-	char	**str;
+	int	i;
+	int	j;
 
-	map->player = 0;
-	map->exit = 0;
-	map->colectible = 0;
-	str = map->map;
 	i = 0;
-	while (str[i] != '\0')
+	while (map->map[i])
 	{
-		if (str[i] == 'P')
-			map->player++;
-		else if (str[i] == 'E')
-			map->exit++;
-		else if (str[i] == 'C')
-			map->colectible++;
+		j = 0;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] == 'P')
+				map->player++;
+			if (map->map[i][j] == 'C')
+				map->colectible++;
+			if (map->map[i][j] == 'E')
+				map->exit++;
+			j++;
+		}
 		i++;
 	}
-	if (map->player != 1 || map->exit != 1 || map->colectible == 0)
-	{
-		if (map->player != 1)
-			ft_putstr_fd(ERROR_PLAYER_NUMBER, 2);
-		if (map->exit != 1)
-			ft_putstr_fd(ERROR_EXIT, 2);
-		if (map->colectible == 0)
-			ft_putstr_fd("Error\nNo colectible on map.\n", 2);
-		ft_exit(1);
-	}
+	if (map->colectible > 1 && map->player == 1 && map->exit == 1)
+		return (1);
+	return (0);
 }
 
 static int	check_last_line(char *line, int expected_len)
@@ -67,6 +61,10 @@ static int	is_map_rectangle(t_map_dimension *map)
 	if (!map->map || !map->map[0])
 		return (0);
 	expected_len = ft_strlen(map->map[0]);
+	if (expected_len > 0 && map->map[0][expected_len - 1] == '\n')
+		expected_len--;
+	if (expected_len < 5)
+		return (0);
 	i = 1;
 	while (map->map[i])
 	{
@@ -74,11 +72,23 @@ static int	is_map_rectangle(t_map_dimension *map)
 			return (0);
 		i++;
 	}
-	return (1);
+	if (i < 3)
+		return (0);
+	return (map->x = expected_len);
 }
 
 void	is_map_valid(t_map_dimension *map)
 {
 	if (!is_map_rectangle(map))
-		ft_exit(1);
+	{
+		free_gnl(map->fd, NULL);
+		free_tab(map->map);
+		ft_exit(2);
+	}
+	if (!check_pec(map))
+	{
+		free_gnl(map->fd, NULL);
+		free_tab(map->map);
+		ft_exit(3);
+	}
 }

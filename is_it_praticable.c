@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_it_praticable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 23:41:16 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/12 23:55:00 by cnamoune         ###   ########.fr       */
+/*   Created: 2025/02/12 23:34:25 by cnamoune          #+#    #+#             */
+/*   Updated: 2025/02/13 00:15:21 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	is_this_map(char *argv)
+void	map_copy(char **map, char **visited)
 {
 	int	i;
 
-	i = ft_strrstr(argv);
-	if (i == 0)
-		ft_exit(0);
+	i = 0;
+	while (map[i])
+	{
+		visited[i] = ft_strdup(map[i]);
+		i++;
+	}
 }
 
-int	main(int argc, char **argv)
+t_map_dimension	*where_is_player(t_map_dimension *map)
 {
-	t_map_dimension	map;
+	
+}
 
-	map = (t_map_dimension){NULL, 0, 0, 0, 0, 0, 0, 0};
-	if (argc != 2)
-		return (0);
-	is_this_map(argv[1]);
-	map = get_map_size(argv[1]);
-	is_map_valid(&map);
-	is_it_praticable(&map);
+void	is_it_praticable(t_map_dimension *map)
+{
+	char	**visited;
+
+	visited = malloc(sizeof(char *) * map->y);
+	map_copy(map->map, visited);
+	map = where_is_player(map);
 }
