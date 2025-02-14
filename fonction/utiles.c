@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 01:01:07 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 18:08:04 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/14 22:35:02 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ void	map_copy(char **map, char **visited)
 	}
 	visited[i] = NULL;
 }
-

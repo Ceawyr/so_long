@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:54:14 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 01:05:35 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/14 22:14:53 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,9 @@ void	ft_exit(int code_error)
 	else if (code_error == 6)
 		ft_putstr_fd(ERROR_TRASH, 2);
 	exit(EXIT_FAILURE);
+}
+
+void	ft_exit_map()
+{
+	
 }
