@@ -6,34 +6,28 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 01:01:07 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 01:03:35 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:08:04 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	*ft_strdup_map(char *s1)
+void	map_copy(char **map, char **visited)
 {
-	char	*dest;
-	size_t	i;
+	int	i;
 
-	if (!s1)
-		return (NULL);
-	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!dest)
-		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (map[i])
 	{
-		if (s1[i] != '1' && s1[i] != '0' && s1[i] != 'C' && s1[i] != 'E' 
-			&& s1[i] != 'P' && s1[i] != '\n')
-			{
-				free(dest);
-				return (NULL);
-			}
-		dest[i] = s1[i];
+		visited[i] = ft_strdup(map[i]);
+		if (!visited[i])
+		{
+			free_tab(visited);
+			free_tab(map);
+			ft_exit(6);
+		}
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	visited[i] = NULL;
 }
+

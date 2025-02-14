@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 00:57:58 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 00:49:47 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/14 01:42:18 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ static int	check_pec(t_map_dimension *map)
 				map->colectible++;
 			if (map->map[i][j] == 'E')
 				map->exit++;
+			else if (map->map[i][j] != '1' && map->map[i][j] != '0'
+				&& map->map[i][j] != 'C' && map->map[i][j] != 'E'
+				&& map->map[i][j] != 'P' && map->map[i][j] != '\n')
+				return (0);
 			j++;
 		}
 		i++;

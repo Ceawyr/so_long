@@ -6,30 +6,11 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 23:34:25 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 01:06:50 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:34:44 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	map_copy(char **map, char **visited)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		visited[i] = ft_strdup_map(map[i]);
-		if (!visited[i])
-		{
-			free_tab(visited);
-			free_tab(map);
-			ft_exit(6);
-		}
-		i++;
-	}
-	visited[i] = NULL;
-}
 
 static int	check_c(t_map_dimension *map, int y_p, int x_p, char **visite)
 {
@@ -74,7 +55,7 @@ static int	flood_fill(t_map_dimension *map, int y_p, int x_p, char **visited)
 	return (0);
 }
 
-static int	player_can_exit(t_map_dimension *map, char **visited)
+static int	player_can_collecte(t_map_dimension *map, char **visited)
 {
 	int	x_p;
 	int	y_p;
@@ -89,9 +70,6 @@ static int	player_can_exit(t_map_dimension *map, char **visited)
 			{
 				map->player_x_pos = x_p;
 				map->player_y_pos = y_p;
-				if (check_c(map, y_p, x_p, visited) != map->colectible)
-					return (0);
-				map_copy(map->map, visited);
 				return (flood_fill(map, y_p, x_p, visited));
 			}
 			x_p++;
@@ -107,15 +85,20 @@ void	is_it_praticable(t_map_dimension *map)
 
 	visited = malloc(sizeof(char *) * (map->y + 1));
 	if (!visited)
-	{
-		free_tab(map->map);
-		ft_exit(4);
-	}
+		return (free_tab(map->map), ft_exit(4));
 	map_copy(map->map, visited);
-	if (!player_can_exit(map, visited))
-	{
-		free_tab(visited);
-		free_tab(map->map);
-		ft_exit(5);
-	}
+	if (!player_can_collecte(map, visited))
+		return (free_tab(visited), free_tab(map->map), ft_exit(5));
+	free_tab(visited);
+	visited = NULL;
+	visited = malloc(sizeof(char *) * (map->y + 1));
+	if (!visited)
+		return (free_tab(map->map), ft_exit(4));
+	map_copy(map->map, visited);
+	if (!visited)
+		return (free_tab(map->map), ft_exit(4));
+	if (check_c(map, map->player_y_pos, map->player_x_pos, visited) \
+			!= map->colectible)
+		return (free_tab(visited), free_tab(map->map), ft_exit(5));
+	free_tab(visited);
 }

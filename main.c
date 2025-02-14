@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:16 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/13 20:44:50 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:57:10 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ int	main(int argc, char **argv)
 {
 	t_map_dimension	map;
 
-	map = (t_map_dimension){NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	map = (t_map_dimension){NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	if (argc != 2)
 		return (0);
 	is_this_map(argv[1]);
 	map = get_map_size(argv[1]);
 	is_map_valid(&map);
 	is_it_praticable(&map);
+	free_tab(map.map);
 }

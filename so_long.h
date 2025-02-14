@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:53 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 01:21:52 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:24:00 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 typedef struct	s_list
 {
 	char	**map;
-	char	**visited;
 	int		player_x_pos;
 	int		player_y_pos;
 	int		x;
@@ -55,6 +54,7 @@ void	scan_map(char *argv);
 void	free_gnl(int fd, char *line);
 void	is_map_valid(t_map_dimension *map);
 void	is_it_praticable(t_map_dimension *map);
+void	map_copy(char **map, char **visited);
 
 t_map_dimension	get_map_size(char *argv);
 
