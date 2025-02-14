@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 00:57:58 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/12 23:42:46 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/14 00:49:47 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_pec(t_map_dimension *map)
 		}
 		i++;
 	}
-	if (map->colectible > 1 && map->player == 1 && map->exit == 1)
+	if (map->colectible >= 1 && map->player == 1 && map->exit == 1)
 		return (1);
 	return (0);
 }
@@ -63,7 +63,7 @@ static int	is_map_rectangle(t_map_dimension *map)
 	expected_len = ft_strlen(map->map[0]);
 	if (expected_len > 0 && map->map[0][expected_len - 1] == '\n')
 		expected_len--;
-	if (expected_len < 5)
+	if (expected_len < 3)
 		return (0);
 	i = 1;
 	while (map->map[i])
@@ -72,7 +72,7 @@ static int	is_map_rectangle(t_map_dimension *map)
 			return (0);
 		i++;
 	}
-	if (i < 3)
+	if (i < 3 && expected_len < 5)
 		return (0);
 	return (map->x = expected_len);
 }
@@ -91,4 +91,5 @@ void	is_map_valid(t_map_dimension *map)
 		free_tab(map->map);
 		ft_exit(3);
 	}
+	free_gnl(map->fd, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:53 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/13 00:09:19 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/14 01:21:52 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,15 @@
 # define ERROR_MAP "Map as to be rectangle and 5x3 minimum\n"
 # define ERROR_MEMORY "Memory allocation failed.\n"
 # define ERROR_PEC "One player, One exit and at least one collectible\n"
+# define ERROR_PATH "Player can't reach the exit or get all collectible\n"
+# define ERROR_TRASH "Map contain trash\n"
 
 typedef struct	s_list
 {
 	char	**map;
+	char	**visited;
+	int		player_x_pos;
+	int		player_y_pos;
 	int		x;
 	int		y;
 	int		z;
@@ -53,6 +58,7 @@ void	is_it_praticable(t_map_dimension *map);
 
 t_map_dimension	get_map_size(char *argv);
 
+char	*ft_strdup_map(char *s1);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);

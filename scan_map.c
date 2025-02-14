@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 20:22:49 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/12 21:47:30 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/13 23:30:25 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,11 @@ t_map_dimension	get_map_size(char *argv)
 
 	i = 0;
 	scan_map(argv);
-	map = (t_map_dimension){NULL, 0, 0, 0, 0, 0, 0, 0};
+	map = (t_map_dimension){NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	get_map_dimention(argv, &map.y);
 	map.map = malloc(sizeof(char *) * (map.y + 1));
 	if (!map.map)
-		ft_exit(0);
+		ft_exit(4);
 	map.fd = open(argv, O_RDONLY);
 	while (i < map.y)
 	{
