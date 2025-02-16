@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 23:41:16 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/16 23:30:33 by cnamoune         ###   ########.fr       */
+/*   Created: 2025/02/16 23:30:57 by cnamoune          #+#    #+#             */
+/*   Updated: 2025/02/16 23:57:12 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	is_this_map(char *argv)
+void	init_mlx(t_game *map)
 {
-	int	i;
-
-	i = ft_strrstr(argv);
-	if (i == 0)
-		ft_exit(0);
-}
-
-int	main(int argc, char **argv)
-{
-	t_game	map;
-
-	map = (t_game){NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	if (argc != 2)
-		return (0);
-	is_this_map(argv[1]);
-	map = get_map_size(argv[1]);
-	is_map_valid(&map);
-	is_it_praticable(&map);
-	init_mlx(&map);
+	map->mlx = mlx_init(map->x * 100, map->y * 100, "map.ber", true);
+	if (map->mlx)
+		ft_exit_map(map, 7);
+	mlx_texture_t *texture = mlx_load_png("images/wall.png");
+	if (!texture)
+		ft_exit_map(map, 8);
 }

@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:53 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 17:24:00 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:37:56 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include "MLX42.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4
@@ -31,17 +32,23 @@
 
 typedef struct	s_list
 {
-	char	**map;
-	int		player_x_pos;
-	int		player_y_pos;
-	int		x;
-	int		y;
-	int		z;
-	int		fd;
-	int		player;
-	int		colectible;
-	int		exit;
-}				t_map_dimension;
+	char		**map;
+	int			player_x_pos;
+	int			player_y_pos;
+	int			x;
+	int			y;
+	int			z;
+	int			fd;
+	int			player;
+	int			colectible;
+	int			exit;
+	mlx_t		*mlx;
+	mlx_image_t	*wall_img;
+	mlx_image_t	*player_img;
+	mlx_image_t	*exit_img;
+	mlx_image_t	*colectible_img;
+	mlx_image_t	*floor_img;
+}				t_game;
 
 int		ft_strlen(const char *s);
 int		ft_strrstr(char *str);
@@ -52,11 +59,11 @@ void	ft_putstr_fd(char *str, int fd);
 void	ft_exit(int code_error);
 void	scan_map(char *argv);
 void	free_gnl(int fd, char *line);
-void	is_map_valid(t_map_dimension *map);
-void	is_it_praticable(t_map_dimension *map);
+void	is_map_valid(t_game *map);
+void	is_it_praticable(t_game *map);
 void	map_copy(char **map, char **visited);
 
-t_map_dimension	get_map_size(char *argv);
+t_game	get_map_size(char *argv);
 
 char	*ft_strdup_map(char *s1);
 char	*ft_strchr(const char *s, int c);

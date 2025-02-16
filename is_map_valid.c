@@ -6,13 +6,13 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 00:57:58 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 01:42:18 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:28:31 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	check_pec(t_map_dimension *map)
+static int	check_pec(t_game *map)
 {
 	int	i;
 	int	j;
@@ -37,9 +37,7 @@ static int	check_pec(t_map_dimension *map)
 		}
 		i++;
 	}
-	if (map->colectible >= 1 && map->player == 1 && map->exit == 1)
-		return (1);
-	return (0);
+	return (1);
 }
 
 static int	check_last_line(char *line, int expected_len)
@@ -57,7 +55,7 @@ static int	check_line_length(char *line, int expected_len)
 		return (check_last_line(line, expected_len));
 }
 
-static int	is_map_rectangle(t_map_dimension *map)
+static int	is_map_rectangle(t_game *map)
 {
 	int		expected_len;
 	int		i;
@@ -81,7 +79,7 @@ static int	is_map_rectangle(t_map_dimension *map)
 	return (map->x = expected_len);
 }
 
-void	is_map_valid(t_map_dimension *map)
+void	is_map_valid(t_game *map)
 {
 	if (!is_map_rectangle(map))
 	{
@@ -90,6 +88,12 @@ void	is_map_valid(t_map_dimension *map)
 		ft_exit(2);
 	}
 	if (!check_pec(map))
+	{
+		free_gnl(map->fd, NULL);
+		free_tab(map->map);
+		ft_exit(3);
+	}
+	if (map->colectible < 1 || map->player != 1 || map->exit != 1)
 	{
 		free_gnl(map->fd, NULL);
 		free_tab(map->map);

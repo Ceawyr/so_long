@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 20:22:49 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 16:57:40 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:27:01 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,14 +110,14 @@ void	get_map_dimention(char *argv, int *y)
 	close(fd);
 }
 
-t_map_dimension	get_map_size(char *argv)
+t_game	get_map_size(char *argv)
 {
-	t_map_dimension	map;
+	t_game	map;
 	int				i;
 
 	i = 0;
 	scan_map(argv);
-	map = (t_map_dimension){NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	map = (t_game){NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	get_map_dimention(argv, &map.y);
 	map.map = malloc(sizeof(char *) * (map.y + 1));
 	if (!map.map)

@@ -6,13 +6,13 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 23:34:25 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 18:34:44 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:27:39 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	check_c(t_map_dimension *map, int y_p, int x_p, char **visite)
+static int	check_c(t_game *map, int y_p, int x_p, char **visite)
 {
 	int	collected;
 
@@ -33,7 +33,7 @@ static int	check_c(t_map_dimension *map, int y_p, int x_p, char **visite)
 	return (collected);
 }
 
-static int	flood_fill(t_map_dimension *map, int y_p, int x_p, char **visited)
+static int	flood_fill(t_game *map, int y_p, int x_p, char **visited)
 {
 	if (y_p < 0 || y_p >= map->y || x_p < 0 || x_p >= map->x)
 		return (0);
@@ -55,7 +55,7 @@ static int	flood_fill(t_map_dimension *map, int y_p, int x_p, char **visited)
 	return (0);
 }
 
-static int	player_can_collecte(t_map_dimension *map, char **visited)
+static int	player_can_collecte(t_game *map, char **visited)
 {
 	int	x_p;
 	int	y_p;
@@ -79,7 +79,7 @@ static int	player_can_collecte(t_map_dimension *map, char **visited)
 	return (0);
 }
 
-void	is_it_praticable(t_map_dimension *map)
+void	is_it_praticable(t_game *map)
 {
 	char	**visited;
 
