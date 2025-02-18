@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:53 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/16 23:37:56 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/18 02:15:37 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include "MLX42.h"
+#include "MLX42/include/MLX42/MLX42.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4
@@ -29,26 +29,42 @@
 # define ERROR_PEC "One player, One exit and at least one collectible\n"
 # define ERROR_PATH "Player can't reach the exit or get all collectible\n"
 # define ERROR_TRASH "Map contain trash\n"
+# define ERROR_MLX "Issues with MLX Librairy\n"
 
 typedef struct	s_list
 {
-	char		**map;
-	int			player_x_pos;
-	int			player_y_pos;
-	int			x;
-	int			y;
-	int			z;
-	int			fd;
-	int			player;
-	int			colectible;
-	int			exit;
-	mlx_t		*mlx;
-	mlx_image_t	*wall_img;
-	mlx_image_t	*player_img;
-	mlx_image_t	*exit_img;
-	mlx_image_t	*colectible_img;
-	mlx_image_t	*floor_img;
+	char			**map;
+	int				player_x_pos;
+	int				player_y_pos;
+	int				x;
+	int				y;
+	int				z;
+	int				fd;
+	int				player;
+	int				colectible;
+	int				exit;
+	mlx_t			*mlx;
+	mlx_image_t		*tree_img;
+	mlx_image_t		*player_img;
+	mlx_image_t		*player_up;
+	mlx_image_t		*player_left;
+	mlx_image_t		*player_right;
+	mlx_image_t		*exit_img;
+	mlx_image_t		*colectible_img;
+	mlx_image_t		*floor_img;
 }				t_game;
+
+typedef struct	s_list
+{
+	mlx_texture_t	*tree_texture;
+	mlx_texture_t	*floor_texture;
+	mlx_texture_t	*exit_texture;
+	mlx_texture_t	*colectible_texture;
+	mlx_texture_t	*player_texture;
+	mlx_texture_t	*p_back_texture;
+	mlx_texture_t	*p_right_texture;
+	mlx_texture_t	*p_left_texture;
+}				t_assets;
 
 int		ft_strlen(const char *s);
 int		ft_strrstr(char *str);
@@ -62,6 +78,9 @@ void	free_gnl(int fd, char *line);
 void	is_map_valid(t_game *map);
 void	is_it_praticable(t_game *map);
 void	map_copy(char **map, char **visited);
+void	ft_exit_map(t_game *map, t_assets *assets, int code_error);
+
+t_assets	*create_assets(void);
 
 t_game	get_map_size(char *argv);
 

@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:54:14 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/14 22:14:53 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/17 21:16:13 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ void	ft_exit(int code_error)
 		ft_putstr_fd(ERROR_PATH, 2);
 	else if (code_error == 6)
 		ft_putstr_fd(ERROR_TRASH, 2);
+	else if (code_error == 7)
+		ft_putstr_fd(ERROR_MLX, 2);
 	exit(EXIT_FAILURE);
 }
 
-void	ft_exit_map()
-{
-	
-}
