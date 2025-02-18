@@ -14,13 +14,13 @@ HEADERS = -I ./MLX42/include
 
 MLXLIBS = $(MLXPATH)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) $(MLXLIBS) -o $(NAME)
+
 all: libmlx $(NAME)
 
 libmlx:
 	@cmake $(MLXPATH) -B $(MLXPATH)/build && make -C $(MLXPATH)/build -j4
-
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) $(MLXLIBS) -o $(NAME)
 
 clean:
 	rm -rf $(OBJS)

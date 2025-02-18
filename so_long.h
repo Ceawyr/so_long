@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:53 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/18 02:15:37 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/18 22:47:40 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define ERROR_TRASH "Map contain trash\n"
 # define ERROR_MLX "Issues with MLX Librairy\n"
 
-typedef struct	s_list
+typedef struct	s_game
 {
 	char			**map;
 	int				player_x_pos;
@@ -54,7 +54,7 @@ typedef struct	s_list
 	mlx_image_t		*floor_img;
 }				t_game;
 
-typedef struct	s_list
+typedef struct	s_assets
 {
 	mlx_texture_t	*tree_texture;
 	mlx_texture_t	*floor_texture;
@@ -69,6 +69,9 @@ typedef struct	s_list
 int		ft_strlen(const char *s);
 int		ft_strrstr(char *str);
 
+void	texture_to_picture(t_game *map, t_assets *assets);
+void	image_to_window(t_game *map);
+void	init_mlx(t_game *map);
 void	free_tab(char **argv);
 void	ft_putstr_fd(char *str, int fd);
 void	ft_putstr_fd(char *str, int fd);

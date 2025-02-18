@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:30:57 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/18 02:12:26 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/18 22:48:03 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ void	init_mlx(t_game *map)
 		ft_exit(4);
 	}
 	map->mlx = mlx_init(map->x * 100, map->y * 100, "map.ber", true);
+	printf("map->x: %d, map->y: %d\n", map->x, map->y);
 	if (!map->mlx)
 		ft_exit_map(map, assets, 1);
 	load_textures_base(map, assets);
 	load_textures_player(map, assets);
+	texture_to_picture(map, assets);
 }
