@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:53 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/18 22:47:40 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/19 22:47:13 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_game
 	int				player;
 	int				colectible;
 	int				exit;
+	int				player_id;
 	mlx_t			*mlx;
 	mlx_image_t		*tree_img;
 	mlx_image_t		*player_img;
@@ -59,7 +60,7 @@ typedef struct	s_assets
 	mlx_texture_t	*tree_texture;
 	mlx_texture_t	*floor_texture;
 	mlx_texture_t	*exit_texture;
-	mlx_texture_t	*colectible_texture;
+	mlx_texture_t	*colect_textur;
 	mlx_texture_t	*player_texture;
 	mlx_texture_t	*p_back_texture;
 	mlx_texture_t	*p_right_texture;
@@ -82,6 +83,8 @@ void	is_map_valid(t_game *map);
 void	is_it_praticable(t_game *map);
 void	map_copy(char **map, char **visited);
 void	ft_exit_map(t_game *map, t_assets *assets, int code_error);
+void	key_handler(mlx_key_data_t keydata, void *param);
+void	free_images(t_game *map, t_assets *assets);
 
 t_assets	*create_assets(void);
 

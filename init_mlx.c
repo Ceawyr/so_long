@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:30:57 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/18 22:48:03 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/19 22:47:34 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_exit_map(t_game *map, t_assets *assets, int code_error)
 			mlx_delete_texture(assets->floor_texture);
 		if (assets->exit_texture)
 			mlx_delete_texture(assets->exit_texture);
-		if (assets->colectible_texture)
-			mlx_delete_texture(assets->colectible_texture);
+		if (assets->colect_textur)
+			mlx_delete_texture(assets->colect_textur);
 		if (assets->player_texture)
 			mlx_delete_texture(assets->player_texture);
 		if (assets->p_back_texture)
@@ -51,8 +51,8 @@ void	load_textures_base(t_game *map, t_assets *assets)
 	assets->exit_texture = mlx_load_png("images/exit.png");
 	if (!assets->exit_texture)
 		ft_exit_map(map, assets, 2);
-	assets->colectible_texture = mlx_load_png("images/colectible.png");
-	if (!assets->colectible_texture)
+	assets->colect_textur = mlx_load_png("images/colectible.png");
+	if (!assets->colect_textur)
 		ft_exit_map(map, assets, 2);
 }
 

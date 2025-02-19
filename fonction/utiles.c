@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 01:01:07 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/18 00:56:59 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/19 23:00:58 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_assets	*create_assets(void)
 	assets->tree_texture = NULL;
 	assets->floor_texture = NULL;
 	assets->exit_texture = NULL;
-	assets->colectible_texture = NULL;
+	assets->colect_textur = NULL;
 	assets->player_texture = NULL;
 	assets->p_back_texture = NULL;
 	assets->p_right_texture = NULL;
