@@ -31,7 +31,9 @@ void	free_tab(char **argv)
 	while (argv[i])
 	{
 		free(argv[i]);
+		argv[i] = NULL;
 		i++;
 	}
 	free(argv);
+	argv = NULL;
 }

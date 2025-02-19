@@ -30,7 +30,32 @@ void	free_images(t_game *map, t_assets *assets)
 		mlx_delete_image(map->mlx, map->player_left);
 	if (map->player_up)
 		mlx_delete_image(map->mlx, map->player_up);
-	ft_exit_map(map, assets, 2);
+	if (assets)
+		ft_exit_map(map, assets, 2);
+	else
+		ft_exit_map(map, NULL, 2);
+}
+
+static void	put_images(t_game *map, int x, int y)
+{
+	char	picture;
+	int		id;
+
+	picture = map->map[y][x];
+	if (picture == '0')
+		id = mlx_image_to_window(map->mlx, map->floor_img, x * 100, y *100);
+	else if (picture == '1')
+		id = mlx_image_to_window(map->mlx, map->tree_img, x * 100, y * 100);
+	else if (picture == 'C')
+		id = mlx_image_to_window(map->mlx, map->colectible_img, x * 100, y *100);
+	else if (picture == 'E')
+		id = mlx_image_to_window(map->mlx, map->exit_img, x * 100, y * 100);
+	else if (picture == 'P')
+		id = mlx_image_to_window(map->mlx, map->player_img, x * 100, y * 100);
+	else
+		return ;
+	if (id == -1)
+		free_images(map, NULL);
 }
 
 void	image_to_window(t_game *map)
@@ -44,23 +69,11 @@ void	image_to_window(t_game *map)
 		x = 0;
 		while (map->map[y][x])
 		{
-			if (map->map[y][x] == '0')
-				mlx_image_to_window(map->mlx, map->floor_img, x * 100, y * 100);
-			if (map->map[y][x] == '1')
-				mlx_image_to_window(map->mlx, map->tree_img, x * 100, y * 100);
-			if (map->map[y][x] == 'P')
-				mlx_image_to_window(map->mlx, map->player_img, x * 100,\
-				 y * 100);
-			if (map->map[y][x] == 'C')
-				mlx_image_to_window(map->mlx, map->colectible_img,\
-				 x * 100, y * 100);
-			if (map->map[y][x] == 'E')
-				mlx_image_to_window(map->mlx, map->exit_img, x * 100, y * 100);
+			put_images(map, x, y);
 			x++;
 		}
 		y++;
 	}
-	mlx_loop(map->mlx);
 }
 
 void	erase_texture(t_game *map, t_assets *assets)
@@ -73,6 +86,7 @@ void	erase_texture(t_game *map, t_assets *assets)
 	mlx_delete_texture(assets->p_right_texture);
 	mlx_delete_texture(assets->p_left_texture);
 	mlx_delete_texture(assets->p_back_texture);
+	free(assets);
 	image_to_window(map);
 }
 

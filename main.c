@@ -34,4 +34,6 @@ int	main(int argc, char **argv)
 	is_it_praticable(&map);
 	init_mlx(&map);
 	mlx_loop(map.mlx);
+	mlx_terminate(map.mlx);
+	return (0);
 }

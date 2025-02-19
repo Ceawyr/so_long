@@ -15,9 +15,7 @@
 void	ft_exit_map(t_game *map, t_assets *assets, int code_error)
 {
 	free_tab(map->map);
-	if (code_error == 1)
-		mlx_terminate(map->mlx);
-	if (code_error == 2)
+	if (code_error == 2 && assets)
 	{
 		if (assets->tree_texture)
 			mlx_delete_texture(assets->tree_texture);
@@ -35,9 +33,10 @@ void	ft_exit_map(t_game *map, t_assets *assets, int code_error)
 			mlx_delete_texture(assets->p_right_texture);
 		if (assets->p_left_texture)
 			mlx_delete_texture(assets->p_left_texture);
-		mlx_terminate(map->mlx);
 	}
-	free(assets);
+	if (assets)
+		free(assets);
+	mlx_terminate(map->mlx);
 	ft_exit(7);
 }
 
@@ -83,7 +82,6 @@ void	init_mlx(t_game *map)
 		ft_exit(4);
 	}
 	map->mlx = mlx_init(map->x * 100, map->y * 100, "map.ber", true);
-	printf("map->x: %d, map->y: %d\n", map->x, map->y);
 	if (!map->mlx)
 		ft_exit_map(map, assets, 1);
 	load_textures_base(map, assets);
