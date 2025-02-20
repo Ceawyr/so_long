@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:53 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/19 22:47:13 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/20 00:39:19 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_game
 	int				colectible;
 	int				exit;
 	int				player_id;
+	int				**colectible_ids;
 	mlx_t			*mlx;
 	mlx_image_t		*tree_img;
 	mlx_image_t		*player_img;
@@ -70,6 +71,7 @@ typedef struct	s_assets
 int		ft_strlen(const char *s);
 int		ft_strrstr(char *str);
 
+void	erase_texture(t_game *map, t_assets *assets);
 void	texture_to_picture(t_game *map, t_assets *assets);
 void	image_to_window(t_game *map);
 void	init_mlx(t_game *map);

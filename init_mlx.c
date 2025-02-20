@@ -6,39 +6,11 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:30:57 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/19 22:47:34 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/20 00:31:02 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_exit_map(t_game *map, t_assets *assets, int code_error)
-{
-	free_tab(map->map);
-	if (code_error == 2 && assets)
-	{
-		if (assets->tree_texture)
-			mlx_delete_texture(assets->tree_texture);
-		if (assets->floor_texture)
-			mlx_delete_texture(assets->floor_texture);
-		if (assets->exit_texture)
-			mlx_delete_texture(assets->exit_texture);
-		if (assets->colect_textur)
-			mlx_delete_texture(assets->colect_textur);
-		if (assets->player_texture)
-			mlx_delete_texture(assets->player_texture);
-		if (assets->p_back_texture)
-			mlx_delete_texture(assets->p_back_texture);
-		if (assets->p_right_texture)
-			mlx_delete_texture(assets->p_right_texture);
-		if (assets->p_left_texture)
-			mlx_delete_texture(assets->p_left_texture);
-	}
-	if (assets)
-		free(assets);
-	mlx_terminate(map->mlx);
-	ft_exit(7);
-}
 
 void	load_textures_base(t_game *map, t_assets *assets)
 {
@@ -71,6 +43,7 @@ void	load_textures_player(t_game *map, t_assets *assets)
 	if (!assets->p_right_texture)
 		ft_exit_map(map, assets, 2);
 }
+
 void	init_mlx(t_game *map)
 {
 	t_assets	*assets;

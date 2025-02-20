@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 21:37:25 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/20 00:12:24 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/20 00:54:05 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,22 @@
 static void	update_player_position(t_game *game, int move_x, int move_y)
 {
 	int	check_id;
+	int	coll_id;
 
 	check_id = 0;
 	if (game->map[move_y][move_x] == 'C')
 	{
+		coll_id = game->colectible_ids[move_y][move_x];
+		if (coll_id >= 0)
+			game->colectible_img->instances[coll_id].enabled = false;
 		game->map[move_y][move_x] = '0';
 		game->colectible--;
 		check_id = mlx_image_to_window(game->mlx, game->floor_img, move_x * 100, \
 		move_y * 100);
 		if (check_id == -1)
 			free_images(game, NULL);
+		else
+			mlx_set_instance_depth(&game->floor_img->instances[check_id], 0);
 	}
 	game->map[game->player_y_pos][game->player_x_pos] = '0';
 	game->player_x_pos = move_x;
