@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 02:12:54 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/20 01:00:10 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/20 01:55:04 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_colectible_ids(t_game *map)
 	}
 }
 
-static void	put_images(t_game *map, int x, int y)
+static void	put_base_images(t_game *map, int x, int y)
 {
 	char	picture;
 	int		id;
@@ -50,15 +50,28 @@ static void	put_images(t_game *map, int x, int y)
 	}
 	else if (picture == '1')
 		id = mlx_image_to_window(map->mlx, map->tree_img, x * 100, y * 100);
-	else if (picture == 'C')
+	else if (picture == 'E')
+		id = mlx_image_to_window(map->mlx, map->exit_img, x * 100, y * 100);
+	else
+		return ;
+	if (id == -1)
+		free_images(map, NULL);
+}
+
+static void	put_entities(t_game *map, int x, int y)
+{
+	char	picture;
+	int		id;
+
+	id = 0;
+	picture = map->map[y][x];
+	if (picture == 'C')
 	{
-		id = mlx_image_to_window(map->mlx, map->colectible_img, \
-		x * 100, y * 100);
+		id = mlx_image_to_window(map->mlx, map->colectible_img, x * 100, \
+		y * 100);
 		mlx_set_instance_depth(&map->colectible_img->instances[id], 1);
 		map->colectible_ids[y][x] = id;
 	}
-	else if (picture == 'E')
-		id = mlx_image_to_window(map->mlx, map->exit_img, x * 100, y * 100);
 	else if (picture == 'P')
 	{
 		id = mlx_image_to_window(map->mlx, map->player_img, x * 100, y * 100);
@@ -83,7 +96,8 @@ void	image_to_window(t_game *map)
 		x = 0;
 		while (map->map[y][x])
 		{
-			put_images(map, x, y);
+			put_base_images(map, x, y);
+			put_entities(map, x, y);
 			x++;
 		}
 		y++;
