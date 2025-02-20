@@ -6,7 +6,7 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 23:41:16 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/20 02:17:54 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/20 02:27:39 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	is_this_map(char *argv)
 	if (i == 0)
 		ft_exit(0);
 }
-
+/*
 static void	free_int_tab(int **tab)
 {
 	int	i;
@@ -44,7 +44,7 @@ static void	free_rest(t_game *map)
 	free_int_tab(map->colectible_ids);
 	mlx_terminate(map->mlx);
 }
-
+*/
 int	main(int argc, char **argv)
 {
 	t_game	map;

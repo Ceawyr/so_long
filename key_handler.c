@@ -6,33 +6,57 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 21:37:25 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/20 02:21:24 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/20 02:37:47 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+// Redessine le floor sur la cellule d'où le joueur vient (position de départ)
+static void	redraw_depart_cell(t_game *game)
+{
+	int	id;
+
+	id = mlx_image_to_window(game->mlx, game->floor_img, game->player_x_pos * 100, game->player_y_pos * 100);
+	if (id == -1)
+		free_images(game, NULL);
+	else
+		mlx_set_instance_depth(&game->floor_img->instances[id], 0);
+}
+
+static void	redraw_cell(t_game *game, int x, int y)
+{
+	int	id;
+
+	id = mlx_image_to_window(game->mlx, game->floor_img, x * 100, y * 100);
+	if (id == -1)
+		free_images(game, NULL);
+	else
+		mlx_set_instance_depth(&game->floor_img->instances[id], 0);
+}
+
 static void	update_player_position(t_game *game, int move_x, int move_y)
 {
-	int	check_id;
+	int	old_x;
+	int	old_y;
 	int	coll_id;
 
-	check_id = 0;
+	redraw_depart_cell(game);
+	old_x = game->player_x_pos;
+	old_y = game->player_y_pos;
 	if (game->map[move_y][move_x] == 'C')
 	{
 		coll_id = game->colectible_ids[move_y][move_x];
-		if (coll_id >= 0)
+		if (coll_id != -1)
+		{
 			game->colectible_img->instances[coll_id].enabled = false;
+			game->colectible_ids[move_y][move_x] = -1;
+		}
 		game->map[move_y][move_x] = '0';
 		game->colectible--;
-		check_id = mlx_image_to_window(game->mlx, game->floor_img, move_x * 100, \
-		move_y * 100);
-		if (check_id == -1)
-			free_images(game, NULL);
-		else
-			mlx_set_instance_depth(&game->floor_img->instances[check_id], 0);
+		redraw_cell(game, move_x, move_y);
 	}
-	game->map[game->player_y_pos][game->player_x_pos] = '0';
+	redraw_cell(game, move_x, move_y);
 	game->player_x_pos = move_x;
 	game->player_y_pos = move_y;
 	game->map[move_y][move_x] = 'P';
