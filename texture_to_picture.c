@@ -6,13 +6,13 @@
 /*   By: cnamoune <cnamoune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 02:12:54 by cnamoune          #+#    #+#             */
-/*   Updated: 2025/02/20 01:55:04 by cnamoune         ###   ########.fr       */
+/*   Updated: 2025/02/20 02:12:43 by cnamoune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_colectible_ids(t_game *map)
+static void	init_colectible_ids(t_game *map)
 {
 	int i;
 	int j;
