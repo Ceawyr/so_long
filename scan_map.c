@@ -117,7 +117,7 @@ t_game	get_map_size(char *argv)
 
 	i = 0;
 	scan_map(argv);
-	map = (t_game){NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+	map = (t_game){NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
 	get_map_dimention(argv, &map.y);
 	map.map = malloc(sizeof(char *) * (map.y + 1));
 	if (!map.map)

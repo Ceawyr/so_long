@@ -121,14 +121,5 @@ void	texture_to_picture(t_game *map, t_assets *assets)
 	map->player_img = mlx_texture_to_image(map->mlx, assets->player_texture);
 	if (!map->player_img)
 		free_images(map, assets);
-	map->player_right = mlx_texture_to_image(map->mlx, assets->p_right_texture);
-	if (!map->player_right)
-		free_images(map, assets);
-	map->player_left = mlx_texture_to_image(map->mlx, assets->p_left_texture);
-	if (!map->player_left)
-		free_images(map, assets);
-	map->player_up = mlx_texture_to_image(map->mlx, assets->p_back_texture);
-	if (!map->player_up)
-		free_images(map, assets);
 	erase_texture(map, assets);
 }

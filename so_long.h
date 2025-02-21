@@ -38,7 +38,6 @@ typedef struct	s_game
 	int				player_y_pos;
 	int				x;
 	int				y;
-	int				z;
 	int				fd;
 	int				player;
 	int				colectible;
@@ -48,9 +47,6 @@ typedef struct	s_game
 	mlx_t			*mlx;
 	mlx_image_t		*tree_img;
 	mlx_image_t		*player_img;
-	mlx_image_t		*player_up;
-	mlx_image_t		*player_left;
-	mlx_image_t		*player_right;
 	mlx_image_t		*exit_img;
 	mlx_image_t		*colectible_img;
 	mlx_image_t		*floor_img;
@@ -63,9 +59,6 @@ typedef struct	s_assets
 	mlx_texture_t	*exit_texture;
 	mlx_texture_t	*colect_textur;
 	mlx_texture_t	*player_texture;
-	mlx_texture_t	*p_back_texture;
-	mlx_texture_t	*p_right_texture;
-	mlx_texture_t	*p_left_texture;
 }				t_assets;
 
 int		ft_strlen(const char *s);
@@ -87,6 +80,8 @@ void	map_copy(char **map, char **visited);
 void	ft_exit_map(t_game *map, t_assets *assets, int code_error);
 void	key_handler(mlx_key_data_t keydata, void *param);
 void	free_images(t_game *map, t_assets *assets);
+void	free_int_tab(int **tab, int rows);
+void	free_rest(t_game *map);
 
 t_assets	*create_assets(void);
 

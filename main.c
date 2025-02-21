@@ -20,37 +20,53 @@ static void	is_this_map(char *argv)
 	if (i == 0)
 		ft_exit(0);
 }
-/*
-static void	free_int_tab(int **tab)
+
+void	free_int_tab(int **tab, int rows)
 {
 	int	i;
 
-	i = 0;
 	if (!tab)
 		return ;
-	while (tab[i])
+	i = 0;
+	while (i < rows)
 	{
-		free(tab[i]);
-		tab[i] = NULL;
+		if (tab[i])
+		{
+			free(tab[i]);
+			tab[i] = NULL;
+		}
 		i++;
 	}
 	free(tab);
 	tab = NULL;
 }
-
-static void	free_rest(t_game *map)
+void	clear_image(t_game *map)
+{
+	if (map->tree_img)
+		mlx_delete_image(map->mlx, map->tree_img);
+	if (map->floor_img)
+		mlx_delete_image(map->mlx, map->floor_img);
+	if (map->exit_img)
+		mlx_delete_image(map->mlx, map->exit_img);
+	if (map->colectible_img)
+		mlx_delete_image(map->mlx, map->colectible_img);
+	if (map->player_img)
+		mlx_delete_image(map->mlx, map->player_img);
+}
+void	free_rest(t_game *map)
 {
 	free_tab(map->map);
-	free_int_tab(map->colectible_ids);
+	free_int_tab(map->colectible_ids, map->y);
 	mlx_terminate(map->mlx);
+	write(1, "Congratz ! You saved the forest from the Robots.\n", 49);
+	exit(1);
 }
-*/
+
 int	main(int argc, char **argv)
 {
 	t_game	map;
 
-	map = (t_game){NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, \
-	NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+	map = (t_game){NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
 	if (argc != 2)
 		return (0);
 	is_this_map(argv[1]);

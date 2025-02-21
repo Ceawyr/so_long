@@ -26,21 +26,8 @@ void	load_textures_base(t_game *map, t_assets *assets)
 	assets->colect_textur = mlx_load_png("images/colectible.png");
 	if (!assets->colect_textur)
 		ft_exit_map(map, assets, 2);
-}
-
-void	load_textures_player(t_game *map, t_assets *assets)
-{
 	assets->player_texture = mlx_load_png("images/p.png");
 	if (!assets->player_texture)
-		ft_exit_map(map, assets, 2);
-	assets->p_back_texture = mlx_load_png("images/p_back.png");
-	if (!assets->p_back_texture)
-		ft_exit_map(map, assets, 2);
-	assets->p_left_texture = mlx_load_png("images/p_left.png");
-	if (!assets->p_left_texture)
-		ft_exit_map(map, assets, 2);
-	assets->p_right_texture = mlx_load_png("images/p_right.png");
-	if (!assets->p_right_texture)
 		ft_exit_map(map, assets, 2);
 }
 
@@ -58,6 +45,5 @@ void	init_mlx(t_game *map)
 	if (!map->mlx)
 		ft_exit_map(map, assets, 1);
 	load_textures_base(map, assets);
-	load_textures_player(map, assets);
 	texture_to_picture(map, assets);
 }

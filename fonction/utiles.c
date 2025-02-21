@@ -24,12 +24,6 @@ void	free_images(t_game *map, t_assets *assets)
 		mlx_delete_image(map->mlx, map->colectible_img);
 	if (map->player_img)
 		mlx_delete_image(map->mlx, map->player_img);
-	if (map->player_right)
-		mlx_delete_image(map->mlx, map->player_right);
-	if (map->player_left)
-		mlx_delete_image(map->mlx, map->player_left);
-	if (map->player_up)
-		mlx_delete_image(map->mlx, map->player_up);
 	if (assets)
 		ft_exit_map(map, assets, 2);
 	else
@@ -43,9 +37,6 @@ void	erase_texture(t_game *map, t_assets *assets)
 	mlx_delete_texture(assets->exit_texture);
 	mlx_delete_texture(assets->colect_textur);
 	mlx_delete_texture(assets->player_texture);
-	mlx_delete_texture(assets->p_right_texture);
-	mlx_delete_texture(assets->p_left_texture);
-	mlx_delete_texture(assets->p_back_texture);
 	free(assets);
 	image_to_window(map);
 }
@@ -79,9 +70,6 @@ t_assets	*create_assets(void)
 	assets->exit_texture = NULL;
 	assets->colect_textur = NULL;
 	assets->player_texture = NULL;
-	assets->p_back_texture = NULL;
-	assets->p_right_texture = NULL;
-	assets->p_left_texture = NULL;
 	return (assets);
 }
 
@@ -100,15 +88,10 @@ void	ft_exit_map(t_game *map, t_assets *assets, int code_error)
 			mlx_delete_texture(assets->colect_textur);
 		if (assets->player_texture)
 			mlx_delete_texture(assets->player_texture);
-		if (assets->p_back_texture)
-			mlx_delete_texture(assets->p_back_texture);
-		if (assets->p_right_texture)
-			mlx_delete_texture(assets->p_right_texture);
-		if (assets->p_left_texture)
-			mlx_delete_texture(assets->p_left_texture);
 	}
 	if (assets)
 		free(assets);
+	free_int_tab(map->colectible_ids, map->y);
 	mlx_terminate(map->mlx);
 	ft_exit(7);
 }
